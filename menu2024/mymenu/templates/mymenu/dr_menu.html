@@ -1,0 +1,42 @@
+
+<h1>{{menu}}</h1>
+
+
+        <ul id="nav">
+                {% for i in itms %}
+
+                    {% if i.slug == cat_selected and not i.ancestor and selitem.numba > i.counter %}
+                        <ul class="inl">
+                        {% for item in i.descandances.all %}
+                            <li><a href="{{ item.get_absolute_url }}">{{item}}</a></li>
+                        {%endfor%}
+                        </ul>
+                            <li style="background:blue;"><a href="{{ i.get_absolute_url }}">{{i}}</a></li>
+                    {% elif selitem.numba > i.counter and not i.ancestor or i.counter == selitem.numba|add:"2" and not i.ancestor %}
+                        <ul class="inl">
+                        {% for item in i.descandances.all %}
+                            <li><a href="{{ item.get_absolute_url }}">{{item}}</a></li>
+                        {%endfor%}
+                        </ul>
+                            <li><a href="{{ i.get_absolute_url }}">{{i}}</a></li>
+
+                    {% elif i.ancestor == None %}
+                    <li><a href="{{ i.get_absolute_url }}">{{ i }}</a></li>
+                    {%endif%}
+                {% endfor %}
+
+        </ul>
+        <hr>
+
+
+
+
+        {% if not cat_selected %}
+            <ul id="nav">
+            {% for i in itemlist %}
+
+                <li><a href="{{ i.get_absolute_url }}">{{ i }}</a></li>
+
+            {% endfor %}
+            </ul>
+        {% endif %}

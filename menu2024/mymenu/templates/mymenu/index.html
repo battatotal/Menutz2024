@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+{% load static %}
+{% load menu_tags %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="/static/mymenu/styles.css" rel="stylesheet"/>
+
+    <title>Меню</title>
+</head>
+<body>
+    <div>
+        {% draw_menu 'main_menu' cat_selected %}
+        {% draw_menu 'second_menu' cat_selected %}
+    </div>
+</body>
+</html>
